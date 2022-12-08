@@ -21,7 +21,7 @@ class TestCreateState(unittest.TestCase):
         ''' Create a connection to the database '''
         self.cnx = MySQLdb.connect(user='hbnb_test',
                                    password='hbnb_test_pwd',
-                                   host='HBNB_MYSQL_HOST',
+                                   host='localhost',
                                    db='hbnb_test_db')
         self.cursor = self.cnx.cursor()
 
@@ -34,7 +34,8 @@ class TestCreateState(unittest.TestCase):
         num_records = self.cursor.fetchone()[0]
 
         ''' Create a new state '''
-        self.cursor.execute('CREATE State name="Carlifonia"')
+        self.cursor.execute('INSERT INTO states(name)
+                            VALUES("California")')
         self.cnx.commit()
 
         '''
