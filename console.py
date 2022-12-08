@@ -121,6 +121,55 @@ class HBNBCommand(cmd.Cmd):
         elif args not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
+
+        ''' Initialize an empty dict to store the params '''
+        params = {}
+
+        ''' iterate over the words in the args given '''
+        for commands in args:
+            ''' check if the command has the "k=v" format '''
+            if "=" in commands:
+                '''split the commands into a key n value '''
+                key, value = commands.split("=")
+
+                ''' check if value is a string '''
+                try:
+                    if value[0] == '"':
+                        ''' remove the leading trailing " '''
+                        value = value[1:-1]
+
+                        ''' unescape any " by using a ' '''
+                        value = value.replace("\\\"", "\"")
+
+                        ''' replace underscores with spaces '''
+                        value = value.replace("_", " ")
+                    elif "." in value:
+                        ''' convert the value into a float '''
+                        value = float(value)
+                    else:
+                        ''' convert value into an integer '''
+                        value = int(value)
+
+                    ''' store the key-value pair to the params '''
+                    params[key] = value
+                except:
+                    ''' if an error occurs, skip params '''
+                    continue
+            else:
+                '''
+                if the commands do not have the correct
+                format, display an error message.
+                '''
+                print("Error: Invalid commands given.\
+                        expected key=value.")
+                return
+
+            '''
+            create the object using the class name
+            and the dictionary of the params
+            '''
+            obj = eval(class_name)(**params)
+
         new_instance = HBNBCommand.classes[args]()
         storage.save()
         print(new_instance.id)
