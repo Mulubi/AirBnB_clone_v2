@@ -5,4 +5,8 @@ from models.base_model import BaseModel
 
 class State(BaseModel):
     """ State class """
-    name = ""
+    __tablename__ = "states"
+
+    def __init__(self, *args, **kwargs):
+        ''' Init method to copy from the BaseModel '''
+        super().__init__(*args, **kwargs)
