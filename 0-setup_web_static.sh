@@ -41,7 +41,7 @@ nginx_config="/etc/nginx/sites-available/default"
 
 # Update the Nginx Config to use the alias directive
 sed -i 's|root /var/www/html;|root /var/www
-/html;\n\t\talias /data/web_static/current/;|' $nginx_config
+/html;\n\t\talias /data/web_static/current/;|' > $nginx_config
 
 # Restart Nginx
 service nginx restart
