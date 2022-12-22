@@ -9,15 +9,10 @@ sudo apt-get install -y nginx
 # Set the required directories
 mkdir -p /data/web_static/shared/
 mkdir -p /data/web_static/releases/test/
-mkdir -p /data/web_static/current
-
-# Create a fake HTML file
-# $html_file='/data/web_static/releases/test/index.html'
 
 # Insert simple content into the html file
 echo "Warren" > /data/web_static/releases/test/index.html
-ln -sf /data/web_static/releases/test/\
- /data/web_static/current
+ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 # Set the ownership and permission of the data file
 chown -R ubuntu /data/
