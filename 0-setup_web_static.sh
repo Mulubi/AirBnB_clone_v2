@@ -40,8 +40,25 @@ chgrp -R ubuntu $data
 nginx_config="/etc/nginx/sites-available/default"
 
 # Update the Nginx Config to use the alias directive
-sed -i 's|root /var/www/html;|root /var/www
-/html;\n\t\talias /data/web_static/current/;|' > $nginx_config
+printf %s "server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    add_header X-Served-By $HOSTNAME;
+    root   /var/www/html;
+    index  index.html index.htm;
+    location /hbnb_static {
+        alias /data/web_static/current;
+        index index.html index.htm;
+    }
+    location /redirect_me {
+        return 301 http://cuberule.com/;
+    }
+    error_page 404 /404.html;
+    location /404 {
+      root /var/www/html;
+      internal;
+    }
+}" > $nginx_config
 
 # Restart Nginx
 service nginx restart
