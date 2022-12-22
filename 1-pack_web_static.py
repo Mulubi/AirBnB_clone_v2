@@ -8,7 +8,6 @@ from datetime import datetime
 
 env.hosts = ['localhost']
 
-
 def do_pack():
     # Create the versions directory if it does not exist
     local("if [ ! -d versions ]; then mkdir versions; fi")
