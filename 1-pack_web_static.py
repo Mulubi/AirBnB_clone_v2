@@ -6,23 +6,24 @@ from fabric.api import local, lcd, env
 from datetime import datetime
 
 
-env.hosts = ['localhost']
-
 def do_pack():
     # Create the versions directory if it does not exist
     local("if [ ! -d versions ]; then mkdir versions; fi")
 
     # Get the current date and time
-    now = datetime.now()
-    timestamp = now.strftime("%Y%m%d%H%M%S")
-
+    dt = datetime.utcnow()
+    
     # Create the archive name
-    archive_name = "web_static_{}.tgz".format(timestamp)
-
+    archive_name = "versions/web_static_{}{}{}{}{}{}.tgz".format(dt.year,
+								 dt.month,
+								 dt.day,
+								 dt.hour,
+								 dt.minute,
+								 dt.second)
     # Change to the web_static directory
     with lcd("web_static"):
         # Create the tar file
-        local("tar -czf ../versions/{} *".format(archive_name))
+        local("tar -cvzf {} web_static".format(archive_name))
 
     # Return the path to the archive
-    return "versions/{}".format(archive_name)
+    return archive_name
