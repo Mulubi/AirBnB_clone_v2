@@ -5,7 +5,9 @@
 from fabric.api import local, lcd, env
 from datetime import datetime
 
+
 env.hosts = ['localhost']
+
 
 def do_pack():
     # Create the versions directory if it does not exist
