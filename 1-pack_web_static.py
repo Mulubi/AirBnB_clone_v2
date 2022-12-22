@@ -1,7 +1,7 @@
+#!/usr/bin/python3
 # This is a fabric script that generates a .tgz archive from
 # the contents of the web_static folder of your repo and
 # stores it in the versions folder:
-
 from fabric.api import local, lcd, env
 from datetime import datetime
 
