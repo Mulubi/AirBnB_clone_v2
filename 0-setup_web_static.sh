@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 # Sets up a web server for deployment of web_static.
 
-# Set the host and user to connect as
-# host=['54.157.156.170' , '3.90.85.138']
-# user='ubuntu'
-
 # Connect to the host and update the package lists
 sudo apt-get update
 # Install nginx
@@ -19,10 +15,10 @@ mkdir -p /data/web_static/releases/test/
 mkdir -p /data/web_static/current
 
 # Create a fake HTML file
-html_file='/data/web_static/releases/test/index.html'
+$html_file='/data/web_static/releases/test/index.html'
 
 # Insert simple content into the html file
-echo "Warren Mulubi Tech Guy" > html_file
+echo "Warren Mulubi Tech Guy" > $html_file
 ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 # Set the ownership and permission of the data file
@@ -51,7 +47,7 @@ printf %s "server {
       root /var/www/html;
       internal;
     }
-}" > nginx_config
+}" > $nginx_config
 
 # Restart Nginx
 service nginx restart
