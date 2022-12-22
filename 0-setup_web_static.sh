@@ -7,9 +7,6 @@ sudo apt-get update
 sudo apt-get install -y nginx
 
 # Set the required directories
-mkdir -p /data/
-mkdir -p /data/web_static/
-mkdir -p /data/web_static/releases/
 mkdir -p /data/web_static/shared/
 mkdir -p /data/web_static/releases/test/
 mkdir -p /data/web_static/current
