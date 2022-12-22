@@ -18,8 +18,9 @@ mkdir -p /data/web_static/current
 # $html_file='/data/web_static/releases/test/index.html'
 
 # Insert simple content into the html file
-echo "Warren Mulubi Tech Guy" > /data/web_static/releases/test/index.html
-ln -sf /data/web_static/releases/test/ /data/web_static/current
+echo "Warren" > /data/web_static/releases/test/index.html
+ln -sf /data/web_static/releases/test/\
+ /data/web_static/current
 
 # Set the ownership and permission of the data file
 chown -R ubuntu /data/
